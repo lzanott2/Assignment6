@@ -1,0 +1,9 @@
+    .item { width:600px; padding-top:10px; }        
+    .title { background-color:#4196CE; color:White; font-size:18px; 
+             font-family:Calibri, Verdana, Tahoma, Sans-Serif; padding:2px 2px 2px 2px; }
+    .title a { text-decoration:none; color:white}
+    .date { font-style:italic; font-size:10px; font-family:Verdana, Arial, Sans-Serif;}        
+    .description { font-family:Verdana, Arial, Sans-Serif; padding:2px 2px 2px 2px; font-size:12px; }
+    .url { font-size: 10px; font-style:italic; font-weight:bold; color:Gray;}
+    .url a { text-decoration:none; color:gray;}
+    #txtSearch { width:450px; border:2px solid #4196CE;
