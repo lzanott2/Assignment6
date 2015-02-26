@@ -30,7 +30,7 @@ function getSearches(query) {
 
 function render(searches) {
 	var results = $('#results');
-	results.empty();
+	$(results).empty();
 	var section = $('section');
 	//var ul = $('ul');    Why doesn't this work?
 
@@ -38,14 +38,35 @@ function render(searches) {
 		//saves all obejects in the search array to the results id
 		results.append(searches[i]); 
 		
-		var text1 = $("<div></div>").text(searches[i].Text);
+		//var text1 = $("<div></div>").text(searches[i].Text);
 		//var text1 = $("<li></li>").text(searches[i].Text);    Why doesn't this work?
-		
+
 		$(section).append(text1);
 		//$(ul).append(text1);    Why doesn't this work?
 	
 		console.log(searches[i].Text);
 	}
+
+
+	// Not sure how to use this!!!!!!
+	$("div").each(function(index) {
+		//console.log(index + ":" + $(this).text());   <--example, but anything can go here
+	});
+
+
+
+
+	// I didn't use the below code; still need to incorporate it!!!!!!
+
+	// var windowObjectReference;
+
+	// function openRequestedPopup() {
+	//  	windowObjectReference = window.open(
+	//   		"http://www.domainname.ext/path/ImageFile.png",
+	//    		"DescriptiveWindowName",
+	//    		"resizable,scrollbars,status"
+	//  	);
+	// }
 }
 
 
