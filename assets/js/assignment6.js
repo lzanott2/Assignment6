@@ -3,6 +3,58 @@ var bingKey = 'AmNIY8wGKFfCuCl/NVwA7uG6JfW+gowaYz/Ip+noCWA'; //bing key, just fo
 var searchUrl = 'http://api.bing.net/qson.aspx?Query='; //bing search link
 
 
+$('input').on('keyup', function (evt) {
+	if(evt.keyCode === 13){
+		getSearches($(this).val());
+	}
+});
+
+
+function getSearches(query) {
+	var q = query;
+	var pageLimit = 30;
+	var url = encodeURI(searchUrl + query + '&JsonType=callback&JsonCallback=?');
+		    
+
+	console.log(url);
+
+	$.ajax({
+		url: url,
+		dataType: 'jsonp',
+	})
+
+	.done(function(response){
+		console.log(response);
+		render(response.searches);
+	});
+}
+
+
+function render(searches) {
+	var results = $('.results');
+	results.empty();
+	for(var i = 0; i < searches.length; i++){
+		results.append(createSearchHTML(searches[i]));
+	}
+}
+
+function createSearchHTML(search) {
+	var searchString = '<div class="search">' +
+					   '<div class="sub-menu-background"></div>' +
+					   '<div class="sub-menu">' +
+					   '<div class="title">' + search.title + '</div>' +
+					   '</div>' +
+					   '</div>';
+
+	var searchEl = $(searchString);
+		//css goes here for searchE1
+	});	
+
+	return searchEl;
+}
+
+
+
 // 'https://api.datamarket.azure.com/Bing/Search'
 
 // var apikey = 'YOUR_API_KEY';
@@ -59,62 +111,3 @@ var searchUrl = 'http://api.bing.net/qson.aspx?Query='; //bing search link
 //     			</div> //end searchresult class
 //     		</div> //end item class
 // 		</script>
-
-
-
-
-
-$('input').on('keyup', function (evt) {
-	if(evt.keyCode === 13){
-		getSearches($(this).val());
-	}
-});
-
-function getSearches(query) {
-	var q = query;
-	var pageLimit = 30;
-	var url = encodeURI(searchUrl + query + '&JsonType=callback&JsonCallback=?');
-		    
-
-	console.log(url);
-
-	$.ajax({
-		url: url,
-		dataType: 'jsonp',
-	})
-
-	.done(function(response){
-		console.log(response);
-		render(response.searches);
-	});
-}
-
-
-function render(searches) {
-	var results = $('.results');
-	results.empty();
-	for(var i = 0; i < searches.length; i++){
-		results.append(createSearchHTML(searches[i]));
-	}
-}
-
-function createSearchHTML(search) {
-	var searchString = '<div class="search">' +
-					'<div class="sub-menu-background"></div>' +
-					'<div class="sub-menu">' +
-						'<div class="title">' + search.title + '</div>' +
-						'<div class="rating">Rated: ' + search.mpaa_rating + '</div>' +
-						'<div class="critics">' + search.ratings.critics_score + '%</div>' +
-					'</div>' +
-				'</div>';
-
-	var searchEl = $(searchString);
-		searchEl.css({
-			backgroundImage: 'url(' + search.posters.detailed.replace('tmb','ori') + ')'
-	});	
-
-	return searchEl;
-}
-
-
-
