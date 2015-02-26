@@ -4,9 +4,7 @@ var searchUrl = 'http://api.bing.net/qson.aspx?Query='; //bing search link
 
 
 $('input').on('keyup', function (evt) {
-	if(evt.keyCode === 13){
 		getSearches($(this).val());
-	}
 });
 
 
@@ -24,75 +22,30 @@ function getSearches(query) {
 	})
 
 	.done(function(response) {
-		render(response.SearchSuggestion.Section);
+		console.log(response);
+		render(response.SearchSuggestion.Section); //this is calling the render function and like saying that searches equates all this in the parameter for render.
 	});
 }
 
 
 function render(searches) {
-	var results = $('.results');
+	var results = $('#results');
 	results.empty();
+	var section = $('section');
+	//var ul = $('ul');    Why doesn't this work?
+
 	for(var i = 0; i < searches.length; i++) {
-		results.append(searches[i]));
+		//saves all obejects in the search array to the results id
+		results.append(searches[i]); 
+		
+		var text1 = $("<div></div>").text(searches[i].Text);
+		//var text1 = $("<li></li>").text(searches[i].Text);    Why doesn't this work?
+		
+		$(section).append(text1);
+		//$(ul).append(text1);    Why doesn't this work?
+	
+		console.log(searches[i].Text);
 	}
-	return results;
 }
 
 
-
-// 'https://api.datamarket.azure.com/Bing/Search'
-
-// var apikey = 'YOUR_API_KEY';
-// var url = 'http://api.bing.net/json.aspx?AppId='+apikey+'&Version=2.2&Market=en-US&Query=testign&Sources=web+spell&Web.Count=1&JsonType=callback&JsonCallback=?';
-// $.getJSON(url, function(data) { console.log(data); });
-
-// http://api.bing.net/qson.aspx?Query=INSERT_QUERY_HERE&JsonType=callback&JsonCallback=?
-// var url = "http://api.search.live.net/json.aspx?JsonType=callback&JsonCallback=?&Appid="+ bingAPIKey 
-//          + "&query=" + encodedKeyWords 
-//          + "&sources=web";
-
-
-//     		'<div class="item"> +
-//         	'<div class="title"><a href="${Url}" target="_blank">${Title}</a></div>
-//         		<div class="date">${DateTime}</div>
-//     			<div class="searchresult">
-//         			<div class="description">${Description}</div> //end description class
-//         			<div class="url"><a href="${Url}" target="_blank">${Url}</a></div> //end url class
-//     			</div> //end searchresult class
-//     		</div> //end item class
-
-
-
-
-// <script language="javascript" type="text/javascript">
-// 		    $(document).ready(function () {
-// 	        	var bingAPIKey = 'AmNIY8wGKFfCuCl/NVwA7uG6JfW+gowaYz/Ip+noCWA'; //Lori Z Bing.com API here
-        
-//         		//the rest of the script goes here
-//         		$("#<%= btnSearch.ClientID %>").click(function (event) {
-// 				    event.preventDefault();
-// 				    var keyWords = $("#<%= txtSearch.ClientID %>").val();
-// 				    var encodedKeyWords = encodeURIComponent(keyWords);
-// 				    //alert(keyWords);
-// 				    var url = "http://api.search.live.net/json.aspx?JsonType=callback&JsonCallback=?&Appid="+ bingAPIKey 
-// 				             + "&query=" + encodedKeyWords 
-// 				             + "&sources=web";
-			    
-// 				    $.getJSON(url, function (data) {
-// 				        $("#result").html("");
-// 				        $("#bingSearchTemplate").tmpl(data.SearchResponse.Web.Results).appendTo("#result");
-// 				    });
-// 				});
-// 		    });
-// 		</script>
-		
-// 		<script id="bingSearchTemplate" type="text/html">
-//     		<div class="item">
-//         		<div class="title"><a href="${Url}" target="_blank">${Title}</a></div>
-//         		<div class="date">${DateTime}</div>
-//     			<div class="searchresult">
-//         			<div class="description">${Description}</div> //end description class
-//         			<div class="url"><a href="${Url}" target="_blank">${Url}</a></div> //end url class
-//     			</div> //end searchresult class
-//     		</div> //end item class
-// 		</script>
