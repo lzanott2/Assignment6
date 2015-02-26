@@ -33,7 +33,7 @@ function getSearches(query) {
 function render(searches) {
 	var results = $('.results');
 	results.empty();
-	for(var i = 0; i < searches.length; i++){
+	for(var i = 0; i < searches.length; i++) {
 		results.append(createSearchHTML(searches[i]));
 	}
 }
@@ -47,8 +47,10 @@ function createSearchHTML(search) {
 					   '</div>';
 
 	var searchEl = $(searchString);
-		//css goes here for searchE1
-	});	
+	
+	searchEl.css({
+		//css for search results goes here
+	});
 
 	return searchEl;
 }
