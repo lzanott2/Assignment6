@@ -1,6 +1,6 @@
 
 var bingKey = 'AmNIY8wGKFfCuCl/NVwA7uG6JfW+gowaYz/Ip+noCWA'; //bing key, just for me, Lor Z
-var searchUrl = 'http://api.bing.net/json.aspx?Query='; //bing search link
+var searchUrl = 'http://api.bing.net/qson.aspx?Query='; //bing search link
 
 
 // 'https://api.datamarket.azure.com/Bing/Search'
