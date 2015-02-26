@@ -29,11 +29,12 @@ function getsearch(query) {
 //          + "&query=" + encodedKeyWords 
 //          + "&sources=web";
 			    
-
+	console.log(url);
 	$.ajax({
 		url: url,
 		dataType: 'jsonp',
 	}).done(function(response){
+		console.log(response);
 		render(response.search);
 	});
 }
@@ -49,6 +50,7 @@ function render(search) {
 
 
 function createSearchHTML(search) {
+	console.log(search);
 	var searchString = '<div class="movie">' +
 					'<div class="sub-menu-background"></div>' +
 					'<div class="sub-menu">' +
