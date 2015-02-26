@@ -38,7 +38,7 @@ function render(searches) {
 		//saves all obejects in the search array to the results id
 		results.append(searches[i]); 
 		
-		//var text1 = $("<div></div>").text(searches[i].Text);
+		var text1 = $("<div></div>").text(searches[i].Text);
 		//var text1 = $("<li></li>").text(searches[i].Text);    Why doesn't this work?
 
 		$(section).append(text1);
@@ -49,9 +49,9 @@ function render(searches) {
 
 
 	// Not sure how to use this!!!!!!
-	$("div").each(function(index) {
-		//console.log(index + ":" + $(this).text());   <--example, but anything can go here
-	});
+	// $("div").each(function(index) {
+	// 	console.log(index + ":" + $(this).text());   <--example, but anything can go here
+	// });
 
 
 
