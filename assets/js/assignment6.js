@@ -9,59 +9,11 @@ var searchUrl = 'http://api.bing.net/qson.aspx?Query='; //bing search link
 // var url = 'http://api.bing.net/json.aspx?AppId='+apikey+'&Version=2.2&Market=en-US&Query=testign&Sources=web+spell&Web.Count=1&JsonType=callback&JsonCallback=?';
 // $.getJSON(url, function(data) { console.log(data); });
 
-
-$('input').on('keyup', function (evt) {
-	if(evt.keyCode === 13){
-		getsearch($(this).val());
-	}
-});
-
-function getsearch(query) {
-	var q = query;
-	var pageLimit = 30;
-	var url = encodeURI(searchUrl + query + "&JsonType=callback&JsonCallback=?");
-
 // http://api.bing.net/qson.aspx?Query=INSERT_QUERY_HERE&JsonType=callback&JsonCallback=?
-
-
-
 // var url = "http://api.search.live.net/json.aspx?JsonType=callback&JsonCallback=?&Appid="+ bingAPIKey 
 //          + "&query=" + encodedKeyWords 
 //          + "&sources=web";
-			    
-	console.log(url);
-	
-	$.ajax({
-		url: url,
-		dataType: 'jsonp',
-	})
 
-	.done(function(response){
-		console.log(response);
-		render(response.search);
-	});
-}
-
-
-function render(search) {
-	var results = $('#results');
-	results.empty();
-	for(var i = 0; i < search.length; i++){
-		results.append(search[i]);
-	}
-}
-
-
-function createSearchHTML(search) {
-	console.log(search);
-	var searchString = '<div class="movie">' +
-					'<div class="sub-menu-background"></div>' +
-					'<div class="sub-menu">' +
-						'<div class="title">' + movie.title + '</div>' +
-						'<div class="rating">Rated: ' + movie.mpaa_rating + '</div>' +
-						'<div class="critics">' + movie.ratings.critics_score + '%</div>' +
-					'</div>' +
-				'</div>';
 
 //     		'<div class="item"> +
 //         	'<div class="title"><a href="${Url}" target="_blank">${Title}</a></div>
@@ -71,15 +23,6 @@ function createSearchHTML(search) {
 //         			<div class="url"><a href="${Url}" target="_blank">${Url}</a></div> //end url class
 //     			</div> //end searchresult class
 //     		</div> //end item class
-
-	var searchEl = $(searchString);
-
-	return searchEl;
-}
-
-
-
-
 
 
 
@@ -119,6 +62,59 @@ function createSearchHTML(search) {
 
 
 
+
+
+$('input').on('keyup', function (evt) {
+	if(evt.keyCode === 13){
+		getSearches($(this).val());
+	}
+});
+
+function getSearches(query) {
+	var q = query;
+	var pageLimit = 30;
+	var url = encodeURI(searchUrl + query + '&JsonType=callback&JsonCallback=?');
+		    
+
+	console.log(url);
+
+	$.ajax({
+		url: url,
+		dataType: 'jsonp',
+	})
+
+	.done(function(response){
+		console.log(response);
+		render(response.searches);
+	});
+}
+
+
+function render(searches) {
+	var results = $('.results');
+	results.empty();
+	for(var i = 0; i < searches.length; i++){
+		results.append(createSearchHTML(searches[i]));
+	}
+}
+
+function createSearchHTML(search) {
+	var searchString = '<div class="search">' +
+					'<div class="sub-menu-background"></div>' +
+					'<div class="sub-menu">' +
+						'<div class="title">' + search.title + '</div>' +
+						'<div class="rating">Rated: ' + search.mpaa_rating + '</div>' +
+						'<div class="critics">' + search.ratings.critics_score + '%</div>' +
+					'</div>' +
+				'</div>';
+
+	var searchEl = $(searchString);
+		searchEl.css({
+			backgroundImage: 'url(' + search.posters.detailed.replace('tmb','ori') + ')'
+	});	
+
+	return searchEl;
+}
 
 
 

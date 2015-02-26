@@ -54,7 +54,7 @@ article {
   justify-content: space-around;
 }
 
-.movie {
+.search {
 	width: 300px;
 	height: 500px;
 	margin-bottom: 25px;
@@ -65,7 +65,7 @@ article {
 	overflow: hidden;
 }
 
-.movie:hover .sub-menu, .movie:hover .sub-menu-background {
+.search:hover .sub-menu, .search:hover .sub-menu-background {
 	transition: all 1s;
 	bottom: 0;
 }
