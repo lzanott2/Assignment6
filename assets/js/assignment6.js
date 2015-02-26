@@ -12,7 +12,7 @@ $('input').on('keyup', function (evt) {
 
 function getSearches(query) {
 	var q = query;
-	var pageLimit = 30;
+	//var pageLimit = 10;
 	var url = encodeURI(searchUrl + query + '&JsonType=callback&JsonCallback=?');
 		    
 
@@ -23,9 +23,8 @@ function getSearches(query) {
 		dataType: 'jsonp',
 	})
 
-	.done(function(response){
-		console.log(response);
-		render(response.searches);
+	.done(function(response) {
+		render(response.SearchSuggestion.Section);
 	});
 }
 
@@ -34,25 +33,9 @@ function render(searches) {
 	var results = $('.results');
 	results.empty();
 	for(var i = 0; i < searches.length; i++) {
-		results.append(createSearchHTML(searches[i]));
+		results.append(searches[i]));
 	}
-}
-
-function createSearchHTML(search) {
-	var searchString = '<div class="search">' +
-					   '<div class="sub-menu-background"></div>' +
-					   '<div class="sub-menu">' +
-					   '<div class="title">' + search.title + '</div>' +
-					   '</div>' +
-					   '</div>';
-
-	var searchEl = $(searchString);
-	
-	searchEl.css({
-		//css for search results goes here
-	});
-
-	return searchEl;
+	return results;
 }
 
 
