@@ -19,7 +19,7 @@ $('input').on('keyup', function (evt) {
 function getsearch(query) {
 	var q = query;
 	var pageLimit = 30;
-	var url = encodeURI(searchUrl + bingKey + '&q=' + query + '&JsonType=callback&JsonCallback=?';
+	var url = encodeURI(searchUrl + query + '&JsonType=callback&JsonCallback=?';
 
 // http://api.bing.net/qson.aspx?Query=INSERT_QUERY_HERE&JsonType=callback&JsonCallback=?
 
