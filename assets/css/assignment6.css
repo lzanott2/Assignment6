@@ -43,7 +43,7 @@ article {
 	border-radius: 5px;
 }
 
-#results {
+#results a {
   display: block;
   text-align: center;
 /*  display: -webkit-box;
@@ -53,10 +53,6 @@ article {
   display: flex;
   -webkit-flex-flow: row wrap;
   justify-content: space-around;*/
-}
-
-section > div {
-
 }
 
 .search {
